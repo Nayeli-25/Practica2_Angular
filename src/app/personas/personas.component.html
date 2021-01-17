@@ -1,0 +1,26 @@
+<ul class="personas">
+  <li *ngFor="let persona of personas" 
+      [class.selected]="persona === selectedPersona" 
+      (click)="onSelect(persona)">
+      <span class="badge">{{persona.id}}</span> {{persona.nombre}} {{persona.apellido}} 
+  </li>
+</ul>
+
+<div *ngIf="selectedPersona">
+  <button [ngClass]="{si: show, no: !show}" (click)="cambiaEstado()"> {{texto}} </button>
+  <div class="details" *ngIf="show">
+    <h2>{{selectedPersona.name | uppercase}} Detalles</h2>
+    <div><span>id: </span>{{selectedPersona.id}}</div>
+    <div>
+      <label>Nombre:
+        <input class="textbox" [(ngModel)]="selectedPersona.nombre" placeholder="nombre"/>
+      </label><br>
+      <label>Apellido:
+        <input class="textbox" [(ngModel)]="selectedPersona.apellido" placeholder="apellido"/>
+      </label><br>
+      <label>Edad:  
+        <input class="textbox" [(ngModel)]="selectedPersona.edad" placeholder="edad"/>
+      </label> 
+    </div>
+  </div>
+</div>
